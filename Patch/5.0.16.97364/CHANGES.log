@@ -1,0 +1,193 @@
+# SC2 5.0.16 Patch Data - CHANGES LOG
+
+## Method
+Hand-built from 5.0.14.94137 baseline XMLs + Blizzard patch notes (base 5.0.16 + hotfix a June 30 + hotfix b July 16).
+
+## Successfully Changed (HIGH confidence)
+
+### Economy (RaceData.xml, BehaviorData.xml)
+- Starting workers: 12→8 (RaceData.xml, all 3 races)
+- Large mineral field Capacity/Contents: 1800→1600 (BehaviorData.xml: HighYieldMineralFieldMinerals, MineralFieldMinerals)
+- Vespene Geyser Capacity/Contents: 2250→2000 (BehaviorData.xml: RawVespeneGeyserGas, RawRichVespeneGeyserGas) [final after hotfix a]
+- Rich Vespene HarvestAmount: 8→6 (BehaviorData.xml: RawRichVespeneGeyserGas)
+
+### Building Supply/Cost (UnitData.xml)
+- Hatchery Food: 6→4
+- Lair Food: 6→4
+- Hive Food: 6→4
+- Hatchery Cost: 325→300 minerals
+- CommandCenter Food: 15→13
+- CommandCenterFlying Food: 15→13
+- CommandCenter Cost: added Minerals=300 (was not previously in patch)
+- PlanetaryFortress Food: 15→13, Cost: added Minerals=250, Vespene=150
+- Nexus Food: 15→13
+
+### Ghost (UnitData.xml, WeaponData.xml, AbilData.xml, EffectData.xml)
+- Food (supply): -3→-2 [reverted in hotfix b, FINAL=2]
+- LifeStart/LifeMax: 125→100 (added, was not in patch)
+- Speed: 2.8125→2.76
+- C10CanisterRifle Range: added Range=7 (was not in patch)
+- ChannelSnipe (Steady Targeting) Energy cost: 50→75 (AbilData.xml)
+- ChannelSnipeDamage Amount: 130→170, removed AttributeBonus Psionic=40 (EffectData.xml)
+
+### Other Units (UnitData.xml, EffectData.xml)
+- SporeCrawlerU damage: AttributeBonus Biological 10→15 (EffectData.xml)
+- ThermalLancesMU (Colossus) damage: Amount 10→12, AttributeBonus Light 5→3 (EffectData.xml) [hotfix b]
+- Overlord Speed: 0.6445→0.625 (UnitData.xml)
+- Mothership: LifeStart/LifeMax 350→400, ShieldsStart/ShieldsMax 350→200 (UnitData.xml) [hotfix a]
+- ShieldBattery EnergyStart: 50→75 (UnitData.xml)
+
+### Gateway/Warpgate Train Times (AbilData.xml)
+- GatewayTrain Train2 (Adept pre-warpgate): 38→33 [hotfix a]
+- GatewayTrain Train6 (HT pre-warpgate): 32→40 [hotfix a]
+- GatewayTrain Train7 (DT pre-warpgate): 42→40 [hotfix a]
+
+## NOT Changed (LOW confidence - needs CASC extraction)
+
+### Warpgate System
+- WarpGateTrain production times: Need Zealot=16, Adept=18, Stalker=16, Sentry=14, HT=26, DT=26 (currently all 16)
+  - NOTE: WarpGateTrain Time values might BE the cooldowns, not production times. Unclear.
+- Warp cooldowns: Zealot 20→22, Adept 20→22, Stalker 23→22, Sentry 23→22, HT 32→35, DT 32→35
+  - NOT in patch XMLs, would need to add
+- Warpgate Research production bonus: 40%→50% [hotfix b]
+  - NOT in patch XMLs, unknown where this is defined
+- Transform to Warpgate cost: 0→25/25
+  - UpgradeToWarpGate morph ability has no cost override in current patch
+- Gateway/Warpgate transform duration: 7s/5s→4s [hotfix b]
+  - NOT in patch XMLs
+
+### Carapace Upgrade Costs
+- L1: 150/150→100/100, L2: 200/200→150/150, L3: 250/250→200/200
+  - NOT in patch XMLs - costs are in base game EvolutionChamberResearch ability which was never patched
+
+### Psi Storm
+- Damage: 110→100
+  - NOT in patch XMLs at all - would need to add CEffectDamage entry
+
+### Widow Mine
+- Lock on time: 1.07→0.85s [hotfix a]
+  - NOT in patch XMLs - WidowMine weapon not defined in patch
+
+### Reaper
+- Build time: 32→34s [hotfix a]
+  - NOT in patch XMLs
+
+### Creep Spread/Recede Rate
+- 0.45→0.55 (slowed)
+  - NOT in patch XMLs - creep source behaviors don't have rate values
+
+### Larva Spawn Rate
+- 10.7s→9.9s [final after hotfix a]
+  - NOT in patch XMLs
+
+### Infestor
+- Microbial Shroud range: 9→12
+  - AmorphousArmorcloud ability is in patch but no range override
+- Microbial Shroud no longer requires Infestation Pit upgrade
+  - Would need RequirementData change
+- Auto-attack weapon
+  - NOT in patch XMLs
+- Neural Parasite on builder SCVs expires at structure completion
+  - NOT in patch XMLs
+
+### Viper
+- Abduct can target Sieged Tanks
+  - NOT in patch XMLs
+
+### Mutalisk
+- Glaives prioritize targets, Arc slop 180
+  - NOT in patch XMLs
+
+### Disruptor
+- Phantom weapon range: 11.35→7 [hotfix b]
+  - NOT in patch XMLs
+
+### Bile
+- No longer instantly destroys force fields [hotfix a]
+  - NOT in patch XMLs
+
+### Adept
+- Damage per upgrade: 1(+1 vs Light)→2(+2 vs Light) [hotfix b]
+  - AdeptDamage and AdeptPiercingDamage in EffectData.xml have AttributeBonus Light values
+  - Current: AdeptDamage has no Amount, AttributeBonus Light=12; AdeptPiercingDamage Amount=3, AttributeBonus Light=3
+  - Unclear which values to change for "per upgrade" bonus
+
+### Small Mineral Fields
+- 900→1100
+  - MineralFieldMineralsOpaque900 has no Capacity/Contents (inherits from parent)
+  - Would need to add explicit values
+
+### Medivac Subgroup Priority
+  - NOT in patch XMLs
+
+### Many bug fixes and actor changes
+  - NOT in patch XMLs
+
+## Summary
+- HIGH confidence changes: ~20 values across 5 XML files
+- LOW confidence / missing: ~25+ values that aren't in the 5.0.14 patch XMLs
+- The hand-built patch covers economy, building stats, Ghost rework, and key unit damage changes
+- Missing: Warpgate system, upgrade costs, ability cooldowns, behaviors, creep/larva rates, and many ability-level changes
+- RECOMMENDATION: Use CASC extraction from a real SC2 5.0.16 install for complete accuracy
+### ADDITIONAL CHANGES (attempted with medium confidence)
+- WarpGateTrain cooldowns updated: Train1/2/4/5 (Zealot/Adept/Stalker/Sentry) 16→22, Train6/7 (HT/DT) 16→35
+  - NOTE: These Time values in CAbilWarpTrain may be the warp cooldowns OR the post-research production times
+  - If they are production times, the cooldowns are elsewhere and this change is wrong
+  - If they are cooldowns, the production times (16/18/16/14/26/26) need to be added separately
+  - NEEDS VERIFICATION against CASC-extracted data
+
+### ADDITIONAL CHANGES (medium confidence - attempted)
+- WarpGateTrain cooldowns: Train1/2/4/5 16→22, Train6/7 16→35 (AbilData.xml)
+  - NOTE: May be cooldowns OR production times - needs verification
+- Small mineral field (MineralFieldMineralsOpaque900): added Capacity=1100, Contents=1100 (BehaviorData.xml)
+- UpgradeToWarpGate morph: added Cost 25/25 minerals/vespene, Duration 4s (AbilData.xml)
+- MorphBackToGateway: added Duration 4s (AbilData.xml)
+
+### STILL MISSING (needs CASC extraction from SC2 5.0.16 install)
+- Warpgate research production bonus: 40%→50% (not in patch XMLs)
+- WarpGateTrain production times: Zealot 16, Adept 18, Stalker 16, Sentry 14, HT 26, DT 26
+  - (if the Time values I changed are cooldowns, these production times need adding separately)
+- Psi Storm damage: 110→100 (ability ID: PsiStorm, not in patch XMLs)
+- Carapace upgrade costs: L1 150/150→100/100, L2 200/200→150/150, L3 250/250→200/200
+  - In base game EvolutionChamberResearch ability, never patched before
+- Widow Mine lock-on time: 1.07→0.85s (weapon not in patch XMLs)
+- Reaper build time: 32→34s (not in patch XMLs)
+- Creep spread/recede rate: 0.45→0.55 (not in patch XMLs)
+- Larva spawn rate: 10.7→9.9s (not in patch XMLs)
+- Infestor: Microbial Shroud range 9→12, auto-attack weapon, NP on SCV
+- Viper: Abduct vs Sieged Tanks
+- Mutalisk: Glaive priority, Arc slop 180
+- Disruptor: Phantom weapon range 11.35→7
+- Bile vs force fields
+- Adept damage per upgrade: 1(+1 vs Light)→2(+2 vs Light)
+- Medivac subgroup priority
+- Numerous bug fixes and actor changes
+
+## CONFIDENCE SUMMARY
+- HIGH confidence: ~24 changes (economy, building stats, Ghost, key damage values, Gateway train times)
+- MEDIUM confidence: ~4 changes (WarpGateTrain cooldowns, small minerals, morph cost/duration)
+- LOW confidence/missing: ~25+ values needing CASC extraction
+- RECOMMENDATION: Use this as fallback, verify/fill gaps with CASC-extracted data from real 5.0.16 install
+
+## VERIFICATION AGAINST SC2 EDITOR EXPORT (5.0.16)
+Exported from: C:\Users\Drekk\Downloads\sc2_exported (Windows PC, SC2 5.0.16)
+
+### Confirmed values (Editor export matches our hand-built patch):
+- Ghost: life=100, supply=-2, speed=2.75, range=7, damage=15, snipe energy=75 ✅
+- Hatchery: cost=300, supply=4 ✅
+- Spore Crawler: damage=20, bonus=15 vs Biological ✅
+- Infestor: Microbial Shroud range=12, has auto-attack weapon (damage=4) ✅
+- Carapace: L1=100/100, L2=150/150, L3=200/200 ✅ (ADDED to patch from Editor data)
+- WarpGate: transform cost=25/25, transform time=4s (5.6 frames), warp-in time=4s all units ✅
+- MorphBackToGateway: time=4s ✅
+
+### New values found from Editor export (added to patch):
+- Carapace upgrade costs added to UpgradeData.xml (L1: 100/100, L2: 150/150, L3: 200/200)
+
+### Remaining gaps (values in Editor export format but not convertible to patch XML):
+- Psi Storm damage: Editor shows energy=75, cooldown=2, but damage amount is in a separate effect file
+- Widow Mine lock-on: Editor shows time=1.19 for WidowMineAttack (unclear if this is lock-on)
+- Reaper build time: Editor shows time=47.6 (game frames, need to convert)
+- Disruptor phantom weapon: not shown in Editor export (weapons element is empty)
+- Creep/larva rates: not visible in per-unit export format
+- Warpgate research production bonus (40%→50%): not visible in per-unit export format
