@@ -1,0 +1,48 @@
+# SC2 5.0.15 Patch Data - CHANGES LOG
+
+## Method
+Built from 5.0.14.94137 baseline + Blizzard 5.0.15 patch notes + 5.0.15 hotfix.
+Verified against SC2 Editor Balance Data Export (SC2 5.0.16 install, which includes 5.0.15 changes).
+
+## Successfully Changed (HIGH confidence — verified against Editor export)
+
+### UnitData.xml
+- VikingFighter cost: added Minerals=125, Vespene=75 (was 150/75) ✅
+- Spire cost: added Minerals=150, Vespene=150 (was 200/200) ✅
+- Liberator sight: added SightRadius=9 (was 10) ✅
+- Ghost supply: Food=-3→-2 ✅
+- Ghost Light attribute: added Attributes index="Light" value="1" ✅
+- Mothership speed: 2.0156→1.6054 (2.83→2.25 in game units) ✅
+- BroodLord speed: 1.875→1.6015 (2.62→2.24 in game units, hotfix) ✅
+
+## NOT Changed (LOW confidence — not in patch XMLs or not verifiable from per-unit Editor export)
+
+### Zerg
+- Spire build time: 71→66s (in ability/build data, not in patch XMLs)
+- Centrifugal Hooks +5 HP to Banelings (upgrade effect data)
+- Microbial Shroud: 50% ranged damage reduction (behavior data)
+- Microbial Shroud: no longer persists after leaving (behavior data)
+- Microbial Shroud cost: 75→100 (ability data)
+- Microbial Shroud: requires upgrade again 150/150 (requirement data)
+
+### Protoss
+- Energy Recharge: 100→50 energy, cooldown 60→45s (Nexus ability data)
+- Psi Storm: 80/3s→140/6s (hotfix: 110/6s), radius 1.5→2, range 9→8 (effect/ability data)
+- DT Blink attack delay: 0.75→0.25 (weapon/behavior data)
+- Observer Surveillance: reveals Observers, vision 13.75→15 (behavior data)
+- Purification cooldown: 21.4→17s (ability data)
+- Stasis Ward duration: 170→90s (behavior data)
+
+### Terran
+- Siege Tank can't be abducted in siege mode (validator data)
+- Drilling Claws effectiveness: 1.07→0.71s (upgrade effect data)
+- Hyperflight Rotors research time: 100→79s (upgrade data)
+
+## 5.0.15 Hotfix Changes
+- Psi Storm damage: 140→110 (effect data, not in patch XMLs)
+- BroodLord speed: 2.62→2.24 ✅ (applied above)
+- Ghost HP: 100→125 (restored — but 5.0.16 later changed back to 100)
+
+## Build Number
+- Used 5.0.15.95841 (estimated from SC2 Versions directory: Base95841)
+- May need correction if the actual build number is different
